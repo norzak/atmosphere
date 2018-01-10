@@ -1,17 +1,21 @@
 <p align="center">
 <img src="http://atmosphere.github.io/atmosphere/images/atmosphere.png" alt="LOGO"/>
 </p>
+
 ### Welcome to Atmosphere: The Asynchronous WebSocket/Comet Framework
+
 The Atmosphere Framework contains client and server side components for building Asynchronous Web Applications. The majority of [popular frameworks](https://github.com/Atmosphere/atmosphere/wiki/Atmosphere-PlugIns-and-Extensions) are either supporting Atmosphere or supported natively by the framework. The Atmosphere Framework supports all major [Browsers and Servers](https://github.com/Atmosphere/atmosphere/wiki/Supported-WebServers-and-Browsers).
 
 <p align="center">Follow us on <a href="http://www.twitter.com/atmo_framework">Twitter</a></p>
+
 Atmosphere transparently supports WebSockets, Server Sent Events (SSE), Long-Polling, HTTP Streaming (Forever frame) and JSONP.
 
 The Atmosphere Framework Stack consists of: 
 
 <p align="center">
-  <img src="http://atmosphere.github.io/atmosphere/images/stack.png"Atmosphere Framework Stack" alt="Atmosphere Stack"/>
+  <img src="http://atmosphere.github.io/atmosphere/images/stack.png"Atmosphere Framework Stack alt="Atmosphere Stack"/>
 </p>
+
 The Atmosphere Framework Stack works on all Servlet based servers including Tomcat, JBoss Jetty, Resin, GlassFish, Undertow, WebSphere, WebLogic etc. Not running a Servlet Container? [Netty](http://atmosphere.github.io/nettosphere/), [Play! Framework](http://atmosphere.github.io/atmosphere-play/) or [Vert.x](https://github.com/Atmosphere/atmosphere-vertx). We support a variety of extensions like [STOMP](https://github.com/Atmosphere/atmosphere-stomp/), [Redis](https://github.com/Atmosphere/atmosphere-extensions/tree/master/redis), [Hazelcast](https://github.com/Atmosphere/atmosphere-extensions/tree/master/hazelcast), [JMS](https://github.com/Atmosphere/atmosphere-extensions/tree/master/jms), [JGroups](https://github.com/Atmosphere/atmosphere-extensions/tree/master/jgroups) and [many more](https://github.com/Atmosphere/atmosphere-extensions/). Support for [Socket.IO](https://github.com/Atmosphere/atmosphere-extensions/tree/master/socketio), [SockJS](https://github.com/Atmosphere/atmosphere-extensions/tree/master/sockjs) and [Cometd](https://github.com/Atmosphere/atmosphere-extensions/tree/master/cometd) are also available.
 
 Using another framework? Look at the list of supported [extensions](https://github.com/Atmosphere/atmosphere/wiki/Atmosphere-PlugIns-and-Extensions). Easiest way to learn Atmosphere is by trying a [sample](https://github.com/Atmosphere/atmosphere-samples/). 
@@ -37,7 +41,7 @@ The Atmosphere Framework ships with many examples describing how to implement We
      <dependency>
          <groupId>org.atmosphere</groupId>
          <artifactId>atmosphere-{atmosphere-module}</artifactId>
-         <version>2.4.7</version>
+         <version>2.4.17</version>
       </dependency>
 ```
       
@@ -49,29 +53,31 @@ Take a look at the PubSub [Client](https://github.com/Atmosphere/atmosphere-samp
 
 [Top](#Top)
 
+### Roadmap to Atmosphere 3.0.0 (October 2017)
+
+[Roadmap](ROADMAP_TO_3.0.0.md)
+
 If you are interested, subscribe to our [mailing list](http://groups.google.com/group/atmosphere-framework) for more info!.
 
 [Top](#Top)
-
+                                                                                          Z
 #### Atmosphere and JDK Versions
-
-Atmosphere 2.3.x and older can run on JDK 1.6 or newer.
 
 Atmosphere 2.4.x requires JDK 1.7 or newer
 
-Atmosphere 2.5.x requires JDK 1.8
+Atmosphere 3.0.0 & 2.5.x requires JDK 1.8
 
 #### Versions
 
 [Change Log](./CHANGELOG.md)
 
-2.4.x release: [2.4.7](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.7) [2.4.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.6) [2.4.5](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.5) [2.4.4](https://goo.gl/3CZ1qV) [2.4.3](https://goo.gl/n5s5GL) [2.4.2](https://goo.gl/TulSUl) [2.4.1](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.1+is%3Aclosed) [2.4.0](https://goo.gl/GpB1B1)
-
-2.3.x release: [2.3.8](https://goo.gl/wzUetO) [2.3.7](https://goo.gl/EYqAJh) [2.3.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.3.6) [2.3.5](https://goo.gl/BVr1PS) [2.3.4](https://goo.gl/5eiQXb) [2.3.3](https://goo.gl/6Yfr0p ) [2.3.2](https://goo.gl/PQ60X0 ) [2.3.1](https://goo.gl/6o9gjc) [2.3.0](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.3.0+is%3Aclosed)
+2.4.x release: [2.4.17](https://github.com/Atmosphere/atmosphere/milestone/7?closed=1) [2.4.16](https://github.com/Atmosphere/atmosphere/milestone/6?closed=1) [2.4.13](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.4.13) [2.4.12](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.12+is%3Aclosed) [2.4.11](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.11%20) [2.4.9](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.9+is%3Aclosed) [2.4.8](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=is%3Aclosed%20label%3A2.4.8%20) [2.4.7](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.7) [2.4.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.6) [2.4.5](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.5) [2.4.4](https://goo.gl/3CZ1qV) [2.4.3](https://goo.gl/n5s5GL) [2.4.2](https://goo.gl/TulSUl) [2.4.1](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.1+is%3Aclosed) [2.4.0](https://goo.gl/GpB1B1)
 
 #### End Of Life Versions (go to [http://async-io.org](http://async-io.org) for commercial support)
 
-2.2.x release: [2.2.9](https://goo.gl/DkOD2l) [2.2.8](https://goo.gl/WoPC3N) [2.2.7](https://goo.gl/biW2Co) [2.2.6](http://goo.gl/kqZSb0) [2.2.5](http://goo.gl/2lNzg2) [2.2.4](http://goo.gl/bOLCW2) [2.2.3](http://goo.gl/1DXKP3) [2.2.2](http://goo.gl/i3W2v5) [2.2.1](http://goo.gl/glEj7L) [2.2.0](http://goo.gl/3hrlZH)
+2.3.x release: [2.3.8](https://goo.gl/wzUetO) [2.3.7](https://goo.gl/EYqAJh) [2.3.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.3.6) [2.3.5](https://goo.gl/BVr1PS) [2.3.4](https://goo.gl/5eiQXb) [2.3.3](https://goo.gl/6Yfr0p ) [2.3.2](https://goo.gl/PQ60X0 ) [2.3.1](https://goo.gl/6o9gjc) [2.3.0](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.3.0+is%3Aclosed)
+
+2.2.x release: [2.2.10](https://goo.gl/jRkVm1) [2.2.9](https://goo.gl/DkOD2l) [2.2.8](https://goo.gl/WoPC3N) [2.2.7](https://goo.gl/biW2Co) [2.2.6](http://goo.gl/kqZSb0) [2.2.5](http://goo.gl/2lNzg2) [2.2.4](http://goo.gl/bOLCW2) [2.2.3](http://goo.gl/1DXKP3) [2.2.2](http://goo.gl/i3W2v5) [2.2.1](http://goo.gl/glEj7L) [2.2.0](http://goo.gl/3hrlZH)
 
 2.1.x release: [2.1.12](https://goo.gl/r829Vr) [2.1.11](https://goo.gl/E9xH2y) [2.1.10](http://goo.gl/2zuMql) [2.1.9](http://goo.gl/3HyZCK) [2.1.8](http://goo.gl/YxX1m9) [2.1.7](http://goo.gl/p41cCc) [2.1.6](http://goo.gl/UYvBxA) [2.1.5](http://goo.gl/jx5pdc ) [2.1.4](http://goo.gl/5HiZM7) [2.1.2](http://goo.gl/0BSpfj) [2.1.1](http://goo.gl/F9fr45) [2.1.0](https://github.com/Atmosphere/atmosphere/issues?labels=2.1&page=1&state=closed)
 
@@ -86,6 +92,6 @@ Atmosphere 2.5.x requires JDK 1.8
 
 ![Analytics](https://ga-beacon.appspot.com/UA-31990725-2/Atmosphere/atmosphere)
 
-@Copyright 2016 [Async-IO.org](http://async-io.org)
+@Copyright 2008-2018 [Async-IO.org](http://async-io.org)
 
 
