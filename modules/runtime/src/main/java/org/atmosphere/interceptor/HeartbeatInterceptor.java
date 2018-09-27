@@ -22,6 +22,7 @@ import org.atmosphere.runtime.AtmosphereConfig;
 import org.atmosphere.runtime.AtmosphereInterceptorAdapter;
 import org.atmosphere.runtime.AtmosphereInterceptorWriter;
 import org.atmosphere.runtime.AtmosphereRequest;
+import org.atmosphere.runtime.AtmosphereRequestImpl;
 import org.atmosphere.runtime.AtmosphereResource;
 import org.atmosphere.runtime.AtmosphereResourceEvent;
 import org.atmosphere.runtime.AtmosphereResourceEventListenerAdapter;
@@ -46,6 +47,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.atmosphere.runtime.ApplicationConfig.CLIENT_HEARTBEAT_INTERVAL_IN_SECONDS;
+import static org.atmosphere.runtime.ApplicationConfig.FLUSH_BUFFER_HEARTBEAT;
 import static org.atmosphere.runtime.ApplicationConfig.HEARTBEAT_INTERVAL_IN_SECONDS;
 import static org.atmosphere.runtime.ApplicationConfig.HEARTBEAT_PADDING_CHAR;
 import static org.atmosphere.runtime.ApplicationConfig.RESUME_ON_HEARTBEAT;
@@ -82,6 +84,7 @@ public class HeartbeatInterceptor extends AtmosphereInterceptorAdapter {
     private int heartbeatFrequencyInSeconds = 60;
     private AtmosphereConfig config;
     private final AtomicBoolean destroyed = new AtomicBoolean(false);
+    private boolean flushBuffer = true;
 
     /**
      * Heartbeat from client disabled by default.
@@ -163,6 +166,11 @@ public class HeartbeatInterceptor extends AtmosphereInterceptorAdapter {
             clientHeartbeatFrequencyInSeconds = Integer.valueOf(s);
         }
 
+        s = config.getInitParameter(FLUSH_BUFFER_HEARTBEAT);
+        if (s != null) {
+            flushBuffer = Boolean.valueOf(s);
+        }
+
         heartBeat = ExecutorsFactory.getScheduler(config);
 
         resumeOnHeartbeat = config.getInitParameter(RESUME_ON_HEARTBEAT, true);
@@ -185,38 +193,45 @@ public class HeartbeatInterceptor extends AtmosphereInterceptorAdapter {
 
         // Check heartbeat
         if (clientHeartbeatFrequencyInSeconds > 0) {
-            byte[] body = new byte[0];
-            try {
-                if (!request.getMethod().equalsIgnoreCase("GET")) {
-                    body = IOUtils.readEntirelyAsByte(r);
-                }
-            } catch (IOException e) {
-                logger.warn("", e);
-                cancelF(request);
-                return Action.CONTINUE;
-            }
+            AtmosphereRequestImpl.Body body = request.body();
 
-            if (Arrays.equals(paddingBytes, body)) {
-                // Dispatch an event to notify that a heartbeat has been intercepted
-                // TODO: see https://github.com/Atmosphere/atmosphere/issues/1561
-                final AtmosphereResourceEvent event = new HeartbeatAtmosphereResourceEvent(AtmosphereResourceImpl.class.cast(r));
+            if (body.isEmpty()
+                    || (body.hasString() && body.asString().length() <= paddingBytes.length)
+                    || (body.hasBytes() && body.byteLength() == paddingBytes.length)) {
 
-                if (AtmosphereResourceHeartbeatEventListener.class.isAssignableFrom(r.getAtmosphereHandler().getClass())) {
-                    r.addEventListener(new AtmosphereResourceEventListenerAdapter.OnHeartbeat() {
-                        @Override
-                        public void onHeartbeat(AtmosphereResourceEvent event) {
-                            AtmosphereResourceHeartbeatEventListener.class.cast(r.getAtmosphereHandler()).onHeartbeat(event);
-                        }
-                    });
+                byte[] bytes;
+                try {
+                    bytes = IOUtils.forceReadEntirelyAsByte(r);
+                } catch (IOException e) {
+                    logger.warn("", e);
+                    cancelF(request);
+                    return Action.CONTINUE;
                 }
 
-                // Fire event
-                r.notifyListeners(event);
+                if (Arrays.equals(paddingBytes, bytes)) {
+                    // Dispatch an event to notify that a heartbeat has been intercepted
+                    // TODO: see https://github.com/Atmosphere/atmosphere/issues/1561
+                    final AtmosphereResourceEvent event = new HeartbeatAtmosphereResourceEvent(AtmosphereResourceImpl.class.cast(r));
 
-                return Action.CANCELLED;
+                    if (AtmosphereResourceHeartbeatEventListener.class.isAssignableFrom(r.getAtmosphereHandler().getClass())) {
+                        r.addEventListener(new AtmosphereResourceEventListenerAdapter.OnHeartbeat() {
+                            @Override
+                            public void onHeartbeat(AtmosphereResourceEvent event) {
+                                AtmosphereResourceHeartbeatEventListener.class.cast(r.getAtmosphereHandler()).onHeartbeat(event);
+                            }
+                        });
+                    }
+
+                    // Fire event
+                    r.notifyListeners(event);
+
+                    return Action.CANCELLED;
+                }
+
+                if (body.isEmpty()) {
+                    request.body(bytes);
+                }
             }
-
-            request.body(body);
         }
 
         if (Utils.webSocketMessage(r)) return Action.CONTINUE;
@@ -360,7 +375,7 @@ public class HeartbeatInterceptor extends AtmosphereInterceptorAdapter {
                                 response.write(paddingBytes, false);
                                 if (Utils.resumableTransport(r.transport()) && resumeOnHeartbeat) {
                                     r.resume();
-                                } else {
+                                } else if (flushBuffer) {
                                     response.flushBuffer();
                                 }
                             } catch (Throwable t) {

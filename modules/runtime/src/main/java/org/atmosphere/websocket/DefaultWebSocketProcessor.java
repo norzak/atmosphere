@@ -643,8 +643,12 @@ public class DefaultWebSocketProcessor implements WebSocketProcessor, Serializab
                             ExecutorsFactory.getScheduler(framework.getAtmosphereConfig()).schedule(new Callable<Object>() {
                                 @Override
                                 public Object call() throws Exception {
-                                    executeClose(webSocket, 1005);
-                                    finish(webSocket, resource, r, s, !allowedToClose);
+                                    AtmosphereResource currentResource = framework.atmosphereFactory().find(resource.uuid());
+                                    if (currentResource != null && currentResource.isSuspended()) {
+                                        // Do not close if the resource has reconnected already
+                                        executeClose(webSocket, 1005);
+                                        finish(webSocket, currentResource, r, s, !allowedToClose);
+                                    }
                                     return null;
                                 }
                             }, ff ? (closingTime == 0 ? 1000 : closingTime) : closingTime, TimeUnit.MILLISECONDS);

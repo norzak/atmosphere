@@ -246,8 +246,13 @@ public class AtmosphereResourceImpl implements AtmosphereResource {
     public boolean resumeOnBroadcast() {
         boolean rob = resumeOnBroadcast.get();
         if (!rob) {
-            Boolean b = (Boolean) req.getAttribute(ApplicationConfig.RESUME_ON_BROADCAST);
-            return b == null ? false : b;
+            try {
+                Boolean b = (Boolean) req.getAttribute(ApplicationConfig.RESUME_ON_BROADCAST);
+                return b == null ? false : b;
+            } catch (ClassCastException ex) {
+                // WebSphere is doing something strange here
+                return false;
+            }
         }
         return rob;
     }
@@ -331,7 +336,7 @@ public class AtmosphereResourceImpl implements AtmosphereResource {
         if (config.isSupportSession()
                 && req.getSession(false) != null
                 && req.getSession().getMaxInactiveInterval() >= 0
-                && req.getSession().getMaxInactiveInterval() * 1000 < timeout) {
+                && req.getSession().getMaxInactiveInterval() * 1000L < timeout) {
             throw new IllegalStateException("Cannot suspend a " +
                     "response longer than the session timeout. Increase the value of session-timeout in web.xml");
         }
