@@ -16,7 +16,7 @@ The Atmosphere Framework Stack works on all Servlet based servers, [Spring Boot]
 
 Atmosphere's Java/Scala/Android Client is called [wAsync](https://github.com/Atmosphere/wasync).
 
-Main development branch is [atmosphere-2.4.x](https://github.com/Atmosphere/atmosphere/tree/atmosphere-2.4.x) Only pull request for that branch will be accepted.
+Main development branch is [atmosphere-2.5.x](https://github.com/Atmosphere/atmosphere/tree/atmosphere-2.5.x) Only pull request for that branch will be accepted.
 
 ### News
 Our next major revision 4.0 is developped under [Atmosph4rX](https://github.com/Atmosphere/Atmosph4rX). 
@@ -29,7 +29,7 @@ Commercial Support is available via [Async-IO.org](http://async-io.org)
      <dependency>
          <groupId>org.atmosphere</groupId>
          <artifactId>atmosphere-{atmosphere-module}</artifactId>
-         <version>2.4.30</version>
+         <version>2.4.32 (JDK 8 and lower) | 2.5.2 (JDK 8+)</version>
       </dependency>
 ```
       
@@ -61,15 +61,17 @@ If you are interested, subscribe to our [mailing list](http://groups.google.com/
                                                                                           Z
 #### Atmosphere and JDK Versions
 
-Atmosphere 2.4.x requires JDK 1.7 or newer
+Atmosphere 2.5.x requires JDK 8 or 11. Atmosphere 2.4.x requires JDK 1.7 or newer
 
 #### Versions
 
-2.4.x release: [2.4.30](https://github.com/Atmosphere/atmosphere/issues/2349) [2.4.29](https://github.com/Atmosphere/atmosphere/milestone/18?closed=1) [2.4.27](https://github.com/Atmosphere/atmosphere/milestone/17?closed=1) [2.4.26](https://github.com/Atmosphere/atmosphere/milestone/16?closed=1) [2.4.24](https://github.com/Atmosphere/atmosphere/milestone/15?closed=1) [2.4.23](https://github.com/Atmosphere/atmosphere/milestones?state=closed) [2.4.22](https://github.com/Atmosphere/atmosphere/milestone/14?closed=1) [2.4.19](https://github.com/Atmosphere/atmosphere/milestone/9?closed=1)
+2.5.x release: [2.5.2] (https://github.com/Atmosphere/atmosphere/milestone/21?closed=1) [2.5.0](https://github.com/Atmosphere/atmosphere/milestone/19)
+
+2.4.x release: [2.4.32] (https://github.com/Atmosphere/atmosphere/milestone/21?closed=1) [2.4.30](https://github.com/Atmosphere/atmosphere/issues/2349) 
 
 #### End Of Life Versions (go to [http://async-io.org](http://async-io.org) for commercial support)
 
-2.4.x release: [2.4.18](https://github.com/Atmosphere/atmosphere/milestone/8?closed=1) [2.4.17](https://github.com/Atmosphere/atmosphere/milestone/7?closed=1) [2.4.16](https://github.com/Atmosphere/atmosphere/milestone/6?closed=1) [2.4.13](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.4.13) [2.4.12](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.12+is%3Aclosed) [2.4.11](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.11%20) [2.4.9](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.9+is%3Aclosed) [2.4.8](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=is%3Aclosed%20label%3A2.4.8%20) [2.4.7](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.7) [2.4.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.6) [2.4.5](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.5) [2.4.4](https://goo.gl/3CZ1qV) [2.4.3](https://goo.gl/n5s5GL) [2.4.2](https://goo.gl/TulSUl) [2.4.1](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.1+is%3Aclosed) [2.4.0](https://goo.gl/GpB1B1)
+2.4.x release:  [2.4.29](https://github.com/Atmosphere/atmosphere/milestone/18?closed=1) [2.4.27](https://github.com/Atmosphere/atmosphere/milestone/17?closed=1) [2.4.26](https://github.com/Atmosphere/atmosphere/milestone/16?closed=1) [2.4.24](https://github.com/Atmosphere/atmosphere/milestone/15?closed=1) [2.4.23](https://github.com/Atmosphere/atmosphere/milestones?state=closed) [2.4.22](https://github.com/Atmosphere/atmosphere/milestone/14?closed=1) [2.4.19](https://github.com/Atmosphere/atmosphere/milestone/9?closed=1) [2.4.18](https://github.com/Atmosphere/atmosphere/milestone/8?closed=1) [2.4.17](https://github.com/Atmosphere/atmosphere/milestone/7?closed=1) [2.4.16](https://github.com/Atmosphere/atmosphere/milestone/6?closed=1) [2.4.13](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.4.13) [2.4.12](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.12+is%3Aclosed) [2.4.11](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.11%20) [2.4.9](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.9+is%3Aclosed) [2.4.8](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=is%3Aclosed%20label%3A2.4.8%20) [2.4.7](https://github.com/Atmosphere/atmosphere/issues?utf8=%E2%9C%93&q=label%3A2.4.7) [2.4.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.6) [2.4.5](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aclosed+label%3A2.4.5) [2.4.4](https://goo.gl/3CZ1qV) [2.4.3](https://goo.gl/n5s5GL) [2.4.2](https://goo.gl/TulSUl) [2.4.1](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.4.1+is%3Aclosed) [2.4.0](https://goo.gl/GpB1B1)
 
 2.3.x release: [2.3.10](https://github.com/Atmosphere/atmosphere/issues/2349) [2.3.8](https://goo.gl/wzUetO) [2.3.7](https://goo.gl/EYqAJh) [2.3.6](https://github.com/Atmosphere/atmosphere/issues?q=is%3Aissue+is%3Aclosed+label%3A2.3.6) [2.3.5](https://goo.gl/BVr1PS) [2.3.4](https://goo.gl/5eiQXb) [2.3.3](https://goo.gl/6Yfr0p ) [2.3.2](https://goo.gl/PQ60X0 ) [2.3.1](https://goo.gl/6o9gjc) [2.3.0](https://github.com/Atmosphere/atmosphere/issues?q=label%3A2.3.0+is%3Aclosed)
 
@@ -88,6 +90,6 @@ Atmosphere 2.4.x requires JDK 1.7 or newer
 
 ![Analytics](https://ga-beacon.appspot.com/UA-31990725-2/Atmosphere/atmosphere)
 
-@Copyright 2008-2018 [Async-IO.org](http://async-io.org)
+@Copyright 2008-2019 [Async-IO.org](http://async-io.org)
 
 
